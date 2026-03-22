@@ -15,7 +15,7 @@ export default function Home() {
   }, []);
 
   const VoiceMorph = ({ className = "" }) => (
-    <div className={`relative inline-flex items-center justify-center align-middle ${className}`}>
+    <div className={`relative inline-flex items-center justify-center h-[1em] align-middle ${className}`}>
       <AnimatePresence mode="wait">
         {!isWave ? (
           <motion.span
@@ -24,7 +24,7 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.4 }}
-            className="bg-gradient-to-r from-blue-600 via-purple-600 to-orange-600 bg-clip-text text-transparent font-bold tracking-[-0.05em] pb-1 pr-4"
+            className="bg-gradient-to-r from-blue-600 via-purple-600 to-orange-600 bg-clip-text text-transparent font-bold tracking-[-0.05em] pr-4 whitespace-nowrap"
           >
             voice
           </motion.span>
@@ -35,7 +35,7 @@ export default function Home() {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
             transition={{ duration: 0.4 }}
-            className="flex items-center gap-1.5 h-[1.2em] px-4"
+            className="flex items-center gap-1.5 h-[0.8em] px-4"
           >
             {[0.4, 0.7, 0.5, 0.9, 0.6, 1, 0.8, 0.4, 0.7, 0.5, 0.9, 0.6].map((h, i) => (
               <motion.div
