@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
 
 export default function Home() {
+  const constraintsRef = useRef(null);
   return (
     <div className="bg-background">
       {/* Hero Section */}
@@ -15,7 +16,7 @@ export default function Home() {
             transition={{ duration: 0.8 }}
           >
             <h1 className="text-[3.5rem] md:text-[5.5rem] font-bold leading-[1.05] tracking-[-0.04em] mb-8 text-black">
-              Bringing voice <br />
+              Bringing technology <br />
               to life
             </h1>
             <div className="flex flex-wrap gap-4">
@@ -251,13 +252,75 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="rounded-[2.5rem] bg-surface-container p-4 border border-black/5 shadow-2xl">
-          <img 
-            alt="Platform Foundation Interface" 
-            className="w-full h-auto rounded-[2rem]" 
-            src="https://lh3.googleusercontent.com/aida/ADBb0uihqrOq9dnhlRD7QYRe1c8-wLmy5PAVQb7wppIQ5nSSvSBsCAxVtZB92DtN7eZ-W6eANLFpLnas2oOlYoZKfek5wKnhshgMDGL2oyvF9F61ttMz8VRuplqvlaWHxyyq-3bmZamfWGn9ZEP2jGdpUDwKwIwkLJHK-610j223Zzmsz6jK70McW9WrLOvCRnXTogxH79-nQZJd83ifEcOS-HtBGfM360TNUHV72_Xes8kvh8pmOPc3jT79hlxuSS48FqS2jLOuk_dqCj8"
-            referrerPolicy="no-referrer"
-          />
+        <div 
+          ref={constraintsRef}
+          className="relative h-[500px] md:h-[700px] w-full overflow-hidden rounded-[2.5rem] md:rounded-[3rem] bg-surface-container border border-black/5 shadow-2xl p-4 md:p-12 flex items-center justify-center"
+        >
+          {/* Background decorative elements */}
+          <div className="absolute inset-0 opacity-20 pointer-events-none">
+            <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-400 blur-[120px] rounded-full"></div>
+            <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-emerald-400 blur-[120px] rounded-full"></div>
+          </div>
+
+          <div className="relative w-full h-full max-w-5xl flex items-center justify-center">
+            {/* VOX Agents Screenshot */}
+            <motion.div
+              drag
+              dragConstraints={constraintsRef}
+              dragElastic={0.1}
+              dragTransition={{ bounceStiffness: 600, bounceDamping: 20 }}
+              initial={{ x: -120, y: -40, rotate: -6, scale: 0.9 }}
+              whileHover={{ 
+                scale: 1.02, 
+                zIndex: 50, 
+                rotate: 0,
+                transition: { type: "spring", stiffness: 400, damping: 25 }
+              }}
+              whileDrag={{ scale: 1.05, zIndex: 100, rotate: 0 }}
+              className="absolute w-[85%] md:w-[80%] z-10 cursor-grab active:cursor-grabbing"
+            >
+              <div className="bg-white p-1.5 md:p-2 rounded-[1.5rem] md:rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.15)] border border-black/5 overflow-hidden">
+                <img 
+                  alt="VOX Agents Interface" 
+                  className="w-full h-auto rounded-[1rem] md:rounded-[2rem]" 
+                  src="https://lh3.googleusercontent.com/d/1dLXZGGGG8JOg4ID7wfEEPBM4_HFwLExP"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+              <div className="absolute -bottom-4 -left-4 bg-black text-white px-6 py-2.5 rounded-full text-xs md:text-sm font-bold shadow-2xl pointer-events-none whitespace-nowrap z-20">
+                VOX Agents
+              </div>
+            </motion.div>
+
+            {/* VOX Creative Screenshot */}
+            <motion.div
+              drag
+              dragConstraints={constraintsRef}
+              dragElastic={0.1}
+              dragTransition={{ bounceStiffness: 600, bounceDamping: 20 }}
+              initial={{ x: 120, y: 40, rotate: 6, scale: 0.9 }}
+              whileHover={{ 
+                scale: 1.02, 
+                zIndex: 50, 
+                rotate: 0,
+                transition: { type: "spring", stiffness: 400, damping: 25 }
+              }}
+              whileDrag={{ scale: 1.05, zIndex: 100, rotate: 0 }}
+              className="absolute w-[85%] md:w-[80%] z-20 cursor-grab active:cursor-grabbing"
+            >
+              <div className="bg-white p-1.5 md:p-2 rounded-[1.5rem] md:rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.15)] border border-black/5 overflow-hidden">
+                <img 
+                  alt="VOX Creative Interface" 
+                  className="w-full h-auto rounded-[1rem] md:rounded-[2rem]" 
+                  src="https://lh3.googleusercontent.com/d/1tpXXth5NXQbWzV-NxNIb5r-Au674QyEh"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+              <div className="absolute -top-4 -right-4 bg-black text-white px-6 py-2.5 rounded-full text-xs md:text-sm font-bold shadow-2xl pointer-events-none whitespace-nowrap z-20">
+                VOX Creative
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
@@ -280,7 +343,7 @@ export default function Home() {
               <img 
                 alt="All-in-one editor" 
                 className="w-full rounded-2xl shadow-2xl border border-black/5" 
-                src="https://lh3.googleusercontent.com/aida/ADBb0uiENLLWwrJDXEv1o0R9oemn1N30xYcxsELc-j7Qg5B2vToo2ZH0XAedIynufWLujefl6Snxj_2OHKl_exvj7lrMXlBVObs9IoxjkRvO3FrieAWdPnv8jJRULKp352l9ZpEIwcKcZ9xt_HTqDN_ml1AsNYuZJSczdoX8ADIRGaCjholBBftnh1TNEQSbNLhi9PbUeXHFiifyATQOiPgIV6BZ-RiNRsiMptQ-a_fRCixOtIaisy2DD2YfhW017MDIV7mhtiEmtphhDxk"
+                src="https://lh3.googleusercontent.com/d/1tpXXth5NXQbWzV-NxNIb5r-Au674QyEh"
                 referrerPolicy="no-referrer"
               />
             </div>
