@@ -15,47 +15,54 @@ export default function Home() {
   }, []);
 
   const VoiceMorph = ({ className = "" }) => (
-    <div className={`relative inline-flex items-center justify-center h-[1em] align-middle ${className}`}>
-      <AnimatePresence mode="wait">
-        {!isWave ? (
-          <motion.span
-            key="text"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.4 }}
-            className="bg-gradient-to-r from-blue-600 via-purple-600 to-orange-600 bg-clip-text text-transparent font-bold tracking-[-0.05em] pr-4 whitespace-nowrap"
-          >
-            voice
-          </motion.span>
-        ) : (
-          <motion.div
-            key="wave"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.8 }}
-            transition={{ duration: 0.4 }}
-            className="flex items-center gap-1.5 h-[0.8em] px-4"
-          >
-            {[0.4, 0.7, 0.5, 0.9, 0.6, 1, 0.8, 0.4, 0.7, 0.5, 0.9, 0.6].map((h, i) => (
-              <motion.div
-                key={i}
-                className="w-2.5 bg-gradient-to-b from-blue-600 to-orange-600 rounded-full"
-                animate={{
-                  height: [`${h * 30}%`, `${h * 100}%`, `${h * 30}%`],
-                }}
-                transition={{
-                  duration: 0.6 + Math.random() * 0.4,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: i * 0.05
-                }}
-              />
-            ))}
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
+    <span className={`relative inline-flex items-baseline ${className}`}>
+      {/* Invisible placeholder to stabilize width, height, and baseline alignment */}
+      <span className="opacity-0 pointer-events-none font-bold tracking-[-0.05em] pr-6">
+        voice
+      </span>
+      
+      <div className="absolute inset-0 flex items-baseline justify-center">
+        <AnimatePresence mode="wait">
+          {!isWave ? (
+            <motion.span
+              key="text"
+              initial={{ opacity: 0, y: 5 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -5 }}
+              transition={{ duration: 0.3 }}
+              className="bg-gradient-to-r from-blue-600 via-purple-600 to-orange-600 bg-clip-text text-transparent font-bold tracking-[-0.05em] pr-6 whitespace-nowrap"
+            >
+              voice
+            </motion.span>
+          ) : (
+            <motion.div
+              key="wave"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              transition={{ duration: 0.3 }}
+              className="flex items-center gap-1.5 h-[0.65em] px-4 self-center translate-y-[0.15em]"
+            >
+              {[0.4, 0.7, 0.5, 0.9, 0.6, 1, 0.8, 0.4, 0.7, 0.5, 0.9, 0.6].map((h, i) => (
+                <motion.div
+                  key={i}
+                  className="w-2.5 bg-gradient-to-b from-blue-600 to-orange-600 rounded-full"
+                  animate={{
+                    height: [`${h * 30}%`, `${h * 100}%`, `${h * 30}%`],
+                  }}
+                  transition={{
+                    duration: 0.6 + Math.random() * 0.4,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: i * 0.05
+                  }}
+                />
+              ))}
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    </span>
   );
 
   return (
