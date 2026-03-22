@@ -15,7 +15,7 @@ export default function Home() {
             transition={{ duration: 0.8 }}
           >
             <h1 className="text-[3.5rem] md:text-[5.5rem] font-bold leading-[1.05] tracking-[-0.04em] mb-8 text-black">
-              Bringing technology <br />
+              Bringing voice <br />
               to life
             </h1>
             <div className="flex flex-wrap gap-4">
