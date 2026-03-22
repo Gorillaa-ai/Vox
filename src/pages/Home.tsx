@@ -1,27 +1,93 @@
 import React, { useRef } from 'react';
 import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
+import { Music2, Mic2, Video, Camera, Play, Pause, Volume2, Sparkles, AudioLines, Film, Image as ImageIcon, ShieldCheck, Scale, Fingerprint } from 'lucide-react';
 
 export default function Home() {
   const constraintsRef = useRef(null);
   return (
-    <div className="bg-background">
+    <div className="bg-background overflow-x-hidden">
       {/* Hero Section */}
-      <section className="max-w-7xl mx-auto px-8 mb-32 pt-12">
-        <div className="grid lg:grid-cols-[1.5fr_1fr] gap-12 items-start mb-16">
+      <section className="relative max-w-7xl mx-auto px-8 mb-32 pt-24 min-h-[90vh] flex flex-col justify-center">
+        {/* Rich Background Illustrations */}
+        <div className="absolute inset-0 -z-10 overflow-hidden">
+          <motion.div
+            animate={{
+              scale: [1, 1.2, 1],
+              rotate: [0, 90, 0],
+              x: [0, 100, 0],
+              y: [0, 50, 0],
+            }}
+            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+            className="absolute -top-24 -left-24 w-[600px] h-[600px] bg-blue-400/10 blur-[120px] rounded-full"
+          />
+          <motion.div
+            animate={{
+              scale: [1.2, 1, 1.2],
+              rotate: [0, -90, 0],
+              x: [0, -100, 0],
+              y: [0, -50, 0],
+            }}
+            transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+            className="absolute -bottom-24 -right-24 w-[700px] h-[700px] bg-purple-400/10 blur-[140px] rounded-full"
+          />
+          <motion.div
+            animate={{
+              scale: [1, 1.3, 1],
+              x: [0, 50, 0],
+              y: [0, 100, 0],
+            }}
+            transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-orange-400/5 blur-[100px] rounded-full"
+          />
+        </div>
+
+        <div className="grid lg:grid-cols-[1.5fr_1fr] gap-12 items-center mb-16 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-[3.5rem] md:text-[5.5rem] font-bold leading-[1.05] tracking-[-0.04em] mb-8 text-black">
-              Bringing technology <br />
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-black/5 border border-black/5 mb-8">
+              <Sparkles className="w-4 h-4 text-orange-500" />
+              <span className="text-xs font-bold tracking-wider uppercase">The Future of Audio AI</span>
+            </div>
+            <h1 className="text-[4rem] md:text-[6.5rem] font-bold leading-[0.95] tracking-[-0.05em] mb-10 text-black">
+              Bringing{' '}
+              <motion.span
+                className="inline-block bg-gradient-to-r from-blue-600 via-purple-600 to-orange-600 bg-clip-text text-transparent cursor-default relative pr-4 pb-2"
+                animate={{
+                  backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
+                }}
+                transition={{
+                  duration: 5,
+                  repeat: Infinity,
+                  ease: "linear"
+                }}
+                style={{ backgroundSize: '200% auto' }}
+                whileHover={{ scale: 1.05 }}
+              >
+                voice
+                <motion.div
+                  className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-blue-600 via-purple-600 to-orange-600 rounded-full opacity-30"
+                  animate={{ scaleX: [0.8, 1.1, 0.8], opacity: [0.2, 0.5, 0.2] }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                />
+              </motion.span>
+              <br />
               to life
             </h1>
-            <div className="flex flex-wrap gap-4">
-              <Link to="/login" className="bg-black text-white px-10 py-4.5 rounded-full font-bold text-lg hover:opacity-90 transition-all shadow-lg inline-block">Sign up</Link>
-              <Link to="/login" className="bg-white text-black border border-black/10 px-10 py-4.5 rounded-full font-bold text-lg hover:bg-gray-50 transition-all inline-block">Contact sales</Link>
+            <div className="flex flex-wrap gap-6">
+              <Link to="/login" className="group relative bg-black text-white px-12 py-5 rounded-full font-bold text-xl hover:opacity-90 transition-all shadow-2xl overflow-hidden">
+                <span className="relative z-10">Get Started</span>
+                <motion.div 
+                  className="absolute inset-0 bg-gradient-to-r from-blue-600 via-purple-600 to-orange-600 opacity-0 group-hover:opacity-20 transition-opacity"
+                  animate={{ x: ['-100%', '100%'] }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                />
+              </Link>
+              <Link to="/login" className="bg-white text-black border border-black/10 px-12 py-5 rounded-full font-bold text-xl hover:bg-gray-50 transition-all shadow-lg">Contact sales</Link>
             </div>
           </motion.div>
           <motion.div 
@@ -29,20 +95,58 @@ export default function Home() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-tertiary text-lg md:text-xl leading-relaxed max-w-xl self-end text-right lg:text-left"
+            className="relative"
           >
-            <p>Powering the best enterprises, creators, and developers. From VOX Agents for customer experience, VOX Creative for content creation, to the leading AI voice generator.</p>
+            <div className="text-tertiary text-xl md:text-2xl leading-relaxed max-w-xl lg:text-left relative z-10">
+              <p className="mb-8">Powering the best enterprises, creators, and developers. From VOX Agents for customer experience, VOX Creative for content creation, to the leading AI voice generator.</p>
+              
+              {/* Mini Illustration */}
+              <div className="flex gap-4 items-center">
+                <div className="flex -space-x-3">
+                  {[1, 2, 3, 4].map((i) => (
+                    <img 
+                      key={i}
+                      src={`https://picsum.photos/seed/user${i}/40/40`} 
+                      className="w-10 h-10 rounded-full border-2 border-white shadow-sm" 
+                      referrerPolicy="no-referrer"
+                      alt="User"
+                    />
+                  ))}
+                </div>
+                <p className="text-sm font-bold text-black">Joined by 2M+ creators</p>
+              </div>
+            </div>
+            
+            {/* Floating elements */}
+            <motion.div
+              animate={{ y: [0, -20, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute -top-12 -right-12 w-24 h-24 bg-white rounded-3xl shadow-2xl border border-black/5 flex items-center justify-center rotate-12 z-0"
+            >
+              <Volume2 className="w-10 h-10 text-blue-500" />
+            </motion.div>
+            <motion.div
+              animate={{ y: [0, 20, 0] }}
+              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+              className="absolute -bottom-8 -left-8 w-20 h-20 bg-white rounded-3xl shadow-2xl border border-black/5 flex items-center justify-center -rotate-12 z-0"
+            >
+              <Sparkles className="w-8 h-8 text-orange-500" />
+            </motion.div>
           </motion.div>
         </div>
 
         {/* Interface Preview Container (IMAGE_15 Style) */}
         <motion.div 
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 1, delay: 0.4 }}
-          className="bg-surface-container rounded-[2.5rem] p-4 md:p-8 overflow-hidden border border-black/5 ambient-shadow"
+          transition={{ duration: 1.2, delay: 0.4 }}
+          className="relative"
         >
+          {/* Glow effect behind container */}
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-orange-500/10 blur-[80px] rounded-[3rem] -z-10"></div>
+          
+          <div className="bg-surface-container rounded-[3rem] p-4 md:p-8 overflow-hidden border border-black/5 shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)] backdrop-blur-xl">
           <div className="bg-white rounded-[2rem] shadow-sm border border-black/5 p-8">
             {/* Tabs */}
             <div className="flex gap-4 mb-12">
@@ -214,6 +318,7 @@ export default function Home() {
               </button>
               <Link to="/login" className="bg-black text-white px-6 py-3 rounded-full font-bold text-sm inline-block">Sign up</Link>
             </div>
+            </div>
           </div>
         </motion.div>
       </section>
@@ -379,15 +484,127 @@ export default function Home() {
         </div>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           {[
-            { icon: '🎵', title: 'Music', desc: 'Generate studio-quality tracks instantly, any genre, style, vocals or instrumental.' },
-            { icon: '📊', title: 'SFX', desc: 'Create custom sound effects, soundscapes and ambient audio or search the SFX library.' },
-            { icon: '🎙️', title: 'Voices', desc: 'Clone a replica of your own voice, design one from a prompt, or explore 1000s of voices.' },
-            { icon: '🎥', title: 'Image & Video', desc: 'Create or edit images and turn ideas into videos with leading models like Veo, Sora, Wan, Kling and Seedance.' }
+            { 
+              icon: <Music2 className="w-8 h-8" />, 
+              title: 'Music', 
+              desc: 'Generate studio-quality tracks instantly, any genre, style, vocals or instrumental.',
+              hoverClass: 'hover:bg-blue-50/50 hover:border-blue-100',
+              accentColor: 'text-blue-600',
+              illustration: (
+                <div className="relative w-full h-32 mb-8 bg-black/5 rounded-2xl overflow-hidden flex items-center justify-center group-hover:bg-blue-100/50 transition-colors duration-500">
+                  <div className="flex items-end gap-1 h-12">
+                    {[0.4, 0.7, 1, 0.6, 0.8, 0.5, 0.9, 0.3].map((h, i) => (
+                      <motion.div
+                        key={i}
+                        className="w-1.5 bg-black/20 rounded-full group-hover:bg-blue-400/50 transition-colors duration-500"
+                        animate={{ height: [`${h * 100}%`, `${(1 - h) * 100}%`, `${h * 100}%`] }}
+                        transition={{ duration: 1.5 + i * 0.2, repeat: Infinity, ease: "easeInOut" }}
+                      />
+                    ))}
+                  </div>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-16 h-16 bg-white/40 backdrop-blur-sm rounded-full flex items-center justify-center shadow-sm border border-white/20 group-hover:border-blue-200/50 transition-colors duration-500">
+                      <Music2 className="w-8 h-8 text-black/60 group-hover:text-blue-600/70 transition-colors duration-500" />
+                    </div>
+                  </div>
+                </div>
+              )
+            },
+            { 
+              icon: <AudioLines className="w-8 h-8" />, 
+              title: 'SFX', 
+              desc: 'Create custom sound effects, soundscapes and ambient audio or search the SFX library.',
+              hoverClass: 'hover:bg-emerald-50/50 hover:border-emerald-100',
+              accentColor: 'text-emerald-600',
+              illustration: (
+                <div className="relative w-full h-32 mb-8 bg-black/5 rounded-2xl overflow-hidden flex items-center justify-center group-hover:bg-emerald-100/50 transition-colors duration-500">
+                  <div className="absolute inset-0 opacity-20">
+                    <svg className="w-full h-full" viewBox="0 0 200 100" preserveAspectRatio="none">
+                      <motion.path
+                        d="M0 50 Q 25 10, 50 50 T 100 50 T 150 50 T 200 50"
+                        fill="none"
+                        stroke="currentColor"
+                        className="text-black group-hover:text-emerald-500 transition-colors duration-500"
+                        strokeWidth="1"
+                        animate={{ d: ["M0 50 Q 25 10, 50 50 T 100 50 T 150 50 T 200 50", "M0 50 Q 25 90, 50 50 T 100 50 T 150 50 T 200 50", "M0 50 Q 25 10, 50 50 T 100 50 T 150 50 T 200 50"] }}
+                        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                      />
+                    </svg>
+                  </div>
+                  <div className="w-16 h-16 bg-white/40 backdrop-blur-sm rounded-full flex items-center justify-center shadow-sm border border-white/20 group-hover:border-emerald-200/50 transition-colors duration-500">
+                    <AudioLines className="w-8 h-8 text-black/60 group-hover:text-emerald-600/70 transition-colors duration-500" />
+                  </div>
+                </div>
+              )
+            },
+            { 
+              icon: <Mic2 className="w-8 h-8" />, 
+              title: 'Voices', 
+              desc: 'Clone a replica of your own voice, design one from a prompt, or explore 1000s of voices.',
+              hoverClass: 'hover:bg-purple-50/50 hover:border-purple-100',
+              accentColor: 'text-purple-600',
+              illustration: (
+                <div className="relative w-full h-32 mb-8 bg-black/5 rounded-2xl overflow-hidden flex items-center justify-center group-hover:bg-purple-100/50 transition-colors duration-500">
+                  <div className="relative">
+                    {[1, 2, 3].map((i) => (
+                      <motion.div
+                        key={i}
+                        className="absolute inset-0 border border-black/10 rounded-full group-hover:border-purple-400/30 transition-colors duration-500"
+                        animate={{ scale: [1, 1.5, 2], opacity: [0.5, 0.2, 0] }}
+                        transition={{ duration: 2, repeat: Infinity, delay: i * 0.6, ease: "easeOut" }}
+                      />
+                    ))}
+                    <div className="w-16 h-16 bg-white/40 backdrop-blur-sm rounded-full flex items-center justify-center shadow-sm border border-white/20 group-hover:border-purple-200/50 transition-colors duration-500 relative z-10">
+                      <Mic2 className="w-8 h-8 text-black/60 group-hover:text-purple-600/70 transition-colors duration-500" />
+                    </div>
+                  </div>
+                </div>
+              )
+            },
+            { 
+              icon: <Video className="w-8 h-8" />, 
+              title: 'Image & Video', 
+              desc: 'Create or edit images and turn ideas into videos with leading models like Veo, Sora, Wan, Kling and Seedance.',
+              hoverClass: 'hover:bg-orange-50/50 hover:border-orange-100',
+              accentColor: 'text-orange-600',
+              illustration: (
+                <div className="relative w-full h-32 mb-8 bg-black/5 rounded-2xl overflow-hidden flex items-center justify-center group-hover:bg-orange-100/50 transition-colors duration-500">
+                  <div className="absolute inset-0 flex items-center justify-center gap-2">
+                    <motion.div 
+                      className="w-12 h-12 bg-white/40 backdrop-blur-sm rounded-xl border border-white/20 flex items-center justify-center group-hover:border-orange-200/50 transition-colors duration-500"
+                      animate={{ rotate: [0, 5, -5, 0], y: [0, -5, 5, 0] }}
+                      transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                    >
+                      <ImageIcon className="w-6 h-6 text-black/40 group-hover:text-orange-500/50 transition-colors duration-500" />
+                    </motion.div>
+                    <motion.div 
+                      className="w-16 h-16 bg-white/60 backdrop-blur-md rounded-2xl border border-white/30 flex items-center justify-center shadow-lg z-10 group-hover:border-orange-300/50 transition-colors duration-500"
+                      animate={{ scale: [1, 1.05, 1] }}
+                      transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                    >
+                      <Video className="w-8 h-8 text-black/60 group-hover:text-orange-600/70 transition-colors duration-500" />
+                    </motion.div>
+                    <motion.div 
+                      className="w-12 h-12 bg-white/40 backdrop-blur-sm rounded-xl border border-white/20 flex items-center justify-center group-hover:border-orange-200/50 transition-colors duration-500"
+                      animate={{ rotate: [0, -5, 5, 0], y: [0, 5, -5, 0] }}
+                      transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+                    >
+                      <Film className="w-6 h-6 text-black/40 group-hover:text-orange-500/50 transition-colors duration-500" />
+                    </motion.div>
+                  </div>
+                </div>
+              )
+            }
           ].map((item, i) => (
-            <div key={i} className="bg-surface-container p-10 rounded-[2rem] border border-black/5 hover:bg-white transition-colors">
-              <span className="text-3xl mb-6 block">{item.icon}</span>
-              <p className="font-bold text-xl mb-3">{item.title}</p>
-              <p className="text-sm text-tertiary leading-relaxed">{item.desc}</p>
+            <div key={i} className={`bg-surface-container p-8 rounded-[2.5rem] border border-black/5 transition-all duration-500 group hover:shadow-2xl hover:-translate-y-2 ${item.hoverClass}`}>
+              {item.illustration}
+              <div className="flex items-center gap-3 mb-3">
+                <div className={`transition-colors duration-500 group-hover:${item.accentColor}`}>
+                  {item.icon}
+                </div>
+                <p className="font-bold text-xl">{item.title}</p>
+              </div>
+              <p className="text-sm text-tertiary leading-relaxed group-hover:text-black/70 transition-colors duration-500">{item.desc}</p>
             </div>
           ))}
         </div>
@@ -562,26 +779,94 @@ export default function Home() {
 
       {/* Safety Section */}
       <section className="max-w-7xl mx-auto px-8 mb-48">
-        <div className="bg-surface-container rounded-[3rem] p-24 border border-black/5">
-          <div className="max-w-3xl mb-24">
-            <h2 className="text-5xl font-bold mb-8 text-black tracking-tight">Safety, built in</h2>
-            <p className="text-2xl text-tertiary leading-relaxed">We prioritize ethical development and deployment of AI technology through comprehensive safeguards.</p>
+        <div className="bg-surface-container rounded-[3rem] p-16 md:p-24 border border-black/5 overflow-hidden relative group/safety">
+          {/* Background decorative elements */}
+          <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-400/5 blur-[100px] rounded-full -translate-y-1/2 translate-x-1/2"></div>
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-400/5 blur-[100px] rounded-full translate-y-1/2 -translate-x-1/2"></div>
+
+          <div className="max-w-3xl mb-24 relative z-10">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <h2 className="text-5xl md:text-6xl font-bold mb-8 text-black tracking-tight">Safety, built in</h2>
+              <p className="text-xl md:text-2xl text-tertiary leading-relaxed">We prioritize ethical development and deployment of AI technology through comprehensive safeguards.</p>
+            </motion.div>
           </div>
-          <div className="grid md:grid-cols-3 gap-20">
+
+          <div className="grid md:grid-cols-3 gap-12 md:gap-20 relative z-10">
             {[
-              { icon: '🛡️', title: 'Moderation', desc: 'Real-time content filtering to prevent misuse and harmful content.' },
-              { icon: '⚖️', title: 'Accountability', desc: 'Strict verification for voice cloning and clear usage policies.' },
-              { icon: '📜', title: 'Provenance', desc: 'AI speech classifier to identify content generated by our models.' }
+              { 
+                icon: <ShieldCheck className="w-8 h-8" />, 
+                title: 'Moderation', 
+                desc: 'Real-time content filtering to prevent misuse and harmful content.',
+                hoverClass: 'hover:bg-emerald-50/50 hover:border-emerald-100',
+                accentColor: 'text-emerald-600',
+                illustration: (
+                  <div className="relative w-20 h-20 mb-8 bg-black/5 rounded-2xl flex items-center justify-center group-hover:bg-emerald-100/50 transition-all duration-500">
+                    <motion.div
+                      animate={{ scale: [1, 1.1, 1] }}
+                      transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                    >
+                      <ShieldCheck className="w-10 h-10 text-black/40 group-hover:text-emerald-600/60 transition-colors duration-500" />
+                    </motion.div>
+                    <div className="absolute inset-0 border-2 border-transparent group-hover:border-emerald-200/50 rounded-2xl transition-all duration-500 scale-110 opacity-0 group-hover:opacity-100"></div>
+                  </div>
+                )
+              },
+              { 
+                icon: <Scale className="w-8 h-8" />, 
+                title: 'Accountability', 
+                desc: 'Strict verification for voice cloning and clear usage policies.',
+                hoverClass: 'hover:bg-blue-50/50 hover:border-blue-100',
+                accentColor: 'text-blue-600',
+                illustration: (
+                  <div className="relative w-20 h-20 mb-8 bg-black/5 rounded-2xl flex items-center justify-center group-hover:bg-blue-100/50 transition-all duration-500">
+                    <motion.div
+                      animate={{ rotate: [-10, 10, -10] }}
+                      transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                    >
+                      <Scale className="w-10 h-10 text-black/40 group-hover:text-blue-600/60 transition-colors duration-500" />
+                    </motion.div>
+                    <div className="absolute inset-0 border-2 border-transparent group-hover:border-blue-200/50 rounded-2xl transition-all duration-500 scale-110 opacity-0 group-hover:opacity-100"></div>
+                  </div>
+                )
+              },
+              { 
+                icon: <Fingerprint className="w-8 h-8" />, 
+                title: 'Provenance', 
+                desc: 'AI speech classifier to identify content generated by our models.',
+                hoverClass: 'hover:bg-purple-50/50 hover:border-purple-100',
+                accentColor: 'text-purple-600',
+                illustration: (
+                  <div className="relative w-20 h-20 mb-8 bg-black/5 rounded-2xl flex items-center justify-center group-hover:bg-purple-100/50 transition-all duration-500">
+                    <motion.div
+                      animate={{ opacity: [0.4, 1, 0.4] }}
+                      transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                    >
+                      <Fingerprint className="w-10 h-10 text-black/40 group-hover:text-purple-600/60 transition-colors duration-500" />
+                    </motion.div>
+                    <div className="absolute inset-0 border-2 border-transparent group-hover:border-purple-200/50 rounded-2xl transition-all duration-500 scale-110 opacity-0 group-hover:opacity-100"></div>
+                  </div>
+                )
+              }
             ].map((item, i) => (
-              <div key={i} className="flex flex-col gap-8">
-                <div className="w-16 h-16 rounded-2xl bg-surface-container-highest flex items-center justify-center text-secondary shadow-sm text-3xl">
-                  {item.icon}
-                </div>
+              <motion.div 
+                key={i} 
+                className={`flex flex-col p-8 rounded-[2.5rem] border border-transparent transition-all duration-500 group hover:shadow-xl hover:-translate-y-2 ${item.hoverClass}`}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+              >
+                {item.illustration}
                 <div>
-                  <h3 className="font-bold text-2xl mb-4 text-black tracking-tight">{item.title}</h3>
-                  <p className="text-tertiary text-lg leading-relaxed">{item.desc}</p>
+                  <h3 className={`font-bold text-2xl mb-4 text-black tracking-tight transition-colors duration-500 group-hover:${item.accentColor}`}>{item.title}</h3>
+                  <p className="text-tertiary text-lg leading-relaxed group-hover:text-black/70 transition-colors duration-500">{item.desc}</p>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
